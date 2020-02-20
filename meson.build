@@ -2433,7 +2433,7 @@ install_data('src/sleep/sleep.conf',
 exe = executable('systemd-sysctl',
                  'src/sysctl/sysctl.c',
                  include_directories : includes,
-                 link_with : [libshared],
+                 link_with : get_option('link-sysctl-shared') ? [libshared] : [libsystemd_static, libshared_static, libbasic],
                  install_rpath : rootlibexecdir,
                  install : true,
                  install_dir : rootlibexecdir)
@@ -2466,7 +2466,7 @@ public_programs += exe
 exe = executable('systemd-escape',
                  'src/escape/escape.c',
                  include_directories : includes,
-                 link_with : [libshared],
+                 link_with : get_option('link-escape-shared') ? [libshared] : [libsystemd_static, libshared_static, libbasic],
                  install_rpath : rootlibexecdir,
                  install : true,
                  install_dir : rootbindir)
@@ -2500,7 +2500,7 @@ executable('systemd-cgroups-agent',
 exe = executable('systemd-id128',
                  'src/id128/id128.c',
                  include_directories : includes,
-                 link_with : [libshared],
+                 link_with : get_option('link-id128-shared') ? [libshared] : [libsystemd_static, libshared_static, libbasic],
                  install_rpath : rootlibexecdir,
                  install : true)
 public_programs += exe
@@ -2508,7 +2508,7 @@ public_programs += exe
 exe = executable('systemd-path',
                  'src/path/path.c',
                  include_directories : includes,
-                 link_with : [libshared],
+                 link_with : get_option('link-path-shared') ? [libshared] : [libsystemd_static, libshared_static, libbasic],
                  install_rpath : rootlibexecdir,
                  install : true)
 public_programs += exe
@@ -2606,7 +2606,7 @@ if conf.get('ENABLE_SYSUSERS') == 1
         exe = executable('systemd-sysusers',
                          'src/sysusers/sysusers.c',
                          include_directories : includes,
-                         link_with : [libshared],
+                         link_with : get_option('link-sysusers-shared') ? [libshared] : [libsystemd_static, libshared_static, libbasic],
                          install_rpath : rootlibexecdir,
                          install : true,
                          install_dir : rootbindir)
@@ -2617,7 +2617,7 @@ if conf.get('ENABLE_TMPFILES') == 1
         exe = executable('systemd-tmpfiles',
                          'src/tmpfiles/tmpfiles.c',
                          include_directories : includes,
-                         link_with : [libshared],
+                         link_with : get_option('link-tmpfiles-shared') ? [libshared] : [libsystemd_static, libshared_static, libbasic],
                          dependencies : [libacl],
                          install_rpath : rootlibexecdir,
                          install : true,

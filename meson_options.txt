@@ -16,6 +16,18 @@ option('link-udev-shared', type : 'boolean',
        description : 'link systemd-udev and its helpers to libsystemd-shared.so')
 option('link-systemctl-shared', type: 'boolean',
        description : 'link systemctl against libsystemd-shared.so')
+option('link-sysusers-shared', type: 'boolean',
+       description : 'link systemd-sysusers against libsystemd-shared.so')
+option('link-sysctl-shared', type: 'boolean',
+       description : 'link systemd-sysctl against libsystemd-shared.so')
+option('link-escape-shared', type: 'boolean',
+       description : 'link systemd-escape against libsystemd-shared.so')
+option('link-id128-shared', type: 'boolean',
+       description : 'link systemd-id128 against libsystemd-shared.so')
+option('link-path-shared', type: 'boolean',
+       description : 'link systemd-path against libsystemd-shared.so')
+option('link-tmpfiles-shared', type: 'boolean',
+       description : 'link systemd-tmpfiles against libsystemd-shared.so')
 option('static-libsystemd', type : 'combo',
        choices : ['false', 'true', 'pic', 'no-pic'],
        description : '''install a static library for libsystemd''')
